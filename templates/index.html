@@ -1,0 +1,40 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Assignment Submission Portal</title>
+  <style>
+    body { font-family: Arial, sans-serif; max-width: 700px; margin: 30px auto; }
+    input { display: block; margin: 6px 0 12px; padding: 6px; width: 100%; }
+    .ok { color: green; } .err { color: red; }
+    table { border-collapse: collapse; width: 100%; }
+    td, th { border: 1px solid #999; padding: 6px; }
+  </style>
+</head>
+<body>
+  <h1>Assignment Submission Portal</h1>
+
+  {% if message %}<p class="ok">{{ message }}</p>{% endif %}
+  {% if errors %}
+    <ul class="err">{% for e in errors %}<li>{{ e }}</li>{% endfor %}</ul>
+  {% endif %}
+
+  <form method="post">
+    <label>Name</label><input name="name">
+    <label>Registration Number</label><input name="reg_no">
+    <label>Assignment Title</label><input name="title">
+    <label>Submission URL</label><input name="url">
+    <button type="submit">Submit</button>
+  </form>
+
+  <h2>Saved Submissions</h2>
+  {% if submissions %}
+  <table>
+    <tr><th>Name</th><th>Reg No</th><th>Title</th><th>URL</th></tr>
+    {% for s in submissions %}
+    <tr><td>{{ s.name }}</td><td>{{ s.reg_no }}</td><td>{{ s.title }}</td><td>{{ s.url }}</td></tr>
+    {% endfor %}
+  </table>
+  {% else %}<p>No submissions yet.</p>{% endif %}
+</body>
+</html>
