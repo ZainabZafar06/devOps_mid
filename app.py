@@ -29,7 +29,7 @@ def is_valid_url(url):
         p = urlparse(url)
     except ValueError:
         return False
-    return True
+    return p.scheme in ("http", "https") and "." in p.netloc and " " not in url
 
 
 def validate(form):
