@@ -1,0 +1,48 @@
+   <!doctype html>
+   <html>
+   <head>
+     <meta charset="utf-8">
+     <title>Assignment Submission Portal (Demo)</title>
+     <style>
+       body { font-family: Arial, sans-serif; max-width: 700px; margin: 30px auto; }
+       input { display: block; margin: 6px 0 12px; padding: 6px; width: 100%; }
+       .ok { color: green; } .err { color: red; }
+       table { border-collapse: collapse; width: 100%; }
+       td, th { border: 1px solid #999; padding: 6px; }
+     </style>
+   </head>
+   <body>
+     <h1>Assignment Submission Portal (Static Demo)</h1>
+     <p id="msg"></p>
+     <input id="name" placeholder="Name">
+     <input id="reg" placeholder="Registration number">
+     <input id="title" placeholder="Assignment title">
+     <input id="url" placeholder="Submission URL">
+     <button onclick="submitForm()">Submit</button>
+
+     <h2>Saved Submissions (this browser session)</h2>
+     <table id="list"><tr><th>Name</th><th>Reg No</th><th>Title</th><th>URL</th></tr></table>
+
+     <script>
+       function validUrl(u) {
+         try { const p = new URL(u); return (p.protocol === "http:" || p.protocol === "https:") && p.hostname.includes("."); }
+         catch (e) { return false; }
+       }
+       function submitForm() {
+         const v = id => document.getElementById(id).value.trim();
+         const msg = document.getElementById("msg");
+         const errors = [];
+         if (!v("name")) errors.push("Name is required.");
+         if (!v("reg")) errors.push("Registration number is required.");
+         if (!v("title")) errors.push("Assignment title is required.");
+         if (!v("url")) errors.push("Submission URL is required.");
+         else if (!validUrl(v("url"))) errors.push("Submission URL is invalid.");
+         if (errors.length) { msg.className = "err"; msg.textContent = errors.join(" "); return; }
+         const row = document.getElementById("list").insertRow();
+         [v("name"), v("reg"), v("title"), v("url")].forEach(t => { row.insertCell().textContent = t; });
+         msg.className = "ok"; msg.textContent = "Submission saved.";
+         ["name", "reg", "title", "url"].forEach(i => document.getElementById(i).value = "");
+       }
+     </script>
+   </body>
+   </html>
