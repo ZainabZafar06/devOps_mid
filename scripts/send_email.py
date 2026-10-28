@@ -1,11 +1,11 @@
-   import json
-   import os
-   import smtplib
-   import sys
-   from email.message import EmailMessage
+import json
+import os
+import smtplib
+import sys
+from email.message import EmailMessage
 
 
-   def main():
+def main():
        user = os.environ.get("EMAIL_USER")
        password = os.environ.get("EMAIL_PASSWORD")
        to = os.environ.get("EMAIL_TO")
@@ -52,5 +52,5 @@
        print("Email sent to", to)
 
 
-   if __name__ == "__main__":
+if __name__ == "__main__":
        main()
