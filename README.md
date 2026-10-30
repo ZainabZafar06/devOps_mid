@@ -29,4 +29,4 @@ It listens on http://127.0.0.1:9000/report and saves the report to `receiver/tes
 ## Self-hosted runner setup
 Repo Settings → Actions → Runners → New self-hosted runner, then run `config` and `run`.
 
-Pages URL: https://YOUR_USERNAME.github.io/assignment-portal/
+Pages URL: https://zainabzafar06.github.io/devOps_mid/
